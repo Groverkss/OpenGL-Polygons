@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Assignment0.dir/src/main.cpp.o  -o Assignment0  include/glfw/src/libglfw3.a libglad.a -ldl -lpthread /usr/lib/x86_64-linux-gnu/librt.so -lm -ldl 

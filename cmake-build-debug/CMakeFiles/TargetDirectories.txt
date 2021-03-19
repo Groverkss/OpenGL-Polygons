@@ -1,9 +1,0 @@
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/CMakeFiles/glad.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/CMakeFiles/Assignment0.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/include/glfw/CMakeFiles/rebuild_cache.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/include/glfw/CMakeFiles/edit_cache.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/include/glfw/src/CMakeFiles/rebuild_cache.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/include/glfw/src/CMakeFiles/edit_cache.dir
-/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/include/glfw/src/CMakeFiles/glfw.dir
