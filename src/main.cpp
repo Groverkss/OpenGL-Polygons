@@ -7,45 +7,147 @@
 #include "shaders.h"
 
 #include <iostream>
+#include <vector>
 #include <cmath>
 
 const char *WINDOW_TITLE = "Hello World";
 int WIDTH = 600;
 int HEIGHT = 800;
 
-float vertices[] = {
-    // positions       //colors
-    0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f,
+std::vector<float> vertices;
+std::vector<unsigned int> indices;
 
-    0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 1.0f,
-};
+void polygon1() {
+    vertices = {
+        // positions       //colors
+        0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
+        -0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f,
 
-unsigned int indices[] = {
-    0, 1, 2,
-    0, 3, 2,
-    0, 1, 5,
-    0, 4, 5,
-    4, 7, 6,
-    6, 5, 4,
-    3, 7, 6,
-    3, 2, 6,
-    6, 5, 2,
-    2, 5, 1,
-    7, 4, 3,
-    3, 4, 0,
-};
+        0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f,
+        0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+        -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 1.0f,
+
+        0.0f, 0.0f, 1.0f, 1.0f, 0.2f, 0.4f,
+        0.0f, 0.0f, -1.0f, 1.0f, 0.2f, 0.4f,
+    };
+
+    indices = {
+        0, 1, 2,
+        0, 3, 2,
+        0, 1, 5,
+        0, 4, 5,
+        4, 7, 6,
+        6, 5, 4,
+        3, 7, 6,
+        3, 2, 6,
+        6, 5, 2,
+        2, 5, 1,
+        7, 4, 3,
+        3, 4, 0,
+        8, 5, 4,
+        8, 7, 4,
+        8, 7, 6,
+        8, 6, 5,
+        9, 1, 2,
+        9, 1, 0,
+        9, 3, 2,
+        9, 3, 0,
+    };
+}
+
+void polygon2() {
+    for (int i = 0; i < 6; i++) {
+        float angle = glm::radians((float) i * (360.0f / 6.0f));
+        vertices.push_back(glm::cos(angle));
+        vertices.push_back(0.0f);
+        vertices.push_back(glm::sin(angle));
+
+        vertices.push_back(glm::sin(angle));
+        vertices.push_back(glm::cos(angle));
+        vertices.push_back(glm::sin(2 * angle));
+    }
+    vertices.push_back(0.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(0.0f);
+
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+
+    vertices.push_back(0.0f);
+    vertices.push_back(-1.0f);
+    vertices.push_back(0.0f);
+
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+
+    for (int i = 0; i < 6; i++) {
+        indices.push_back(6);
+        indices.push_back((i + 1) % 6);
+        indices.push_back(i);
+
+        indices.push_back(7);
+        indices.push_back((i + 1) % 6);
+        indices.push_back(i);
+    }
+}
+
+void polygon3() {
+    for (int i = 0; i < 11; i++) {
+        float angle = glm::radians((float) i * (360.0f / 11.0f));
+        vertices.push_back(glm::cos(angle));
+        vertices.push_back(0.0f);
+        vertices.push_back(glm::sin(angle));
+
+        vertices.push_back(glm::sin(angle));
+        vertices.push_back(glm::cos(angle));
+        vertices.push_back(glm::sin(2 * angle));
+    }
+    vertices.push_back(0.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(0.0f);
+
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(1.0f);
+
+    for (int i = 0; i < 11; i++) {
+        indices.push_back(11);
+        indices.push_back((i + 1) % 11);
+        indices.push_back(i);
+
+        indices.push_back(12);
+        indices.push_back((i + 1) % 11);
+        indices.push_back(i);
+    }
+}
 
 int cameraOn[3] = {0, 0, 0};
+int objectOn[3] = {0, 0, 0};
+int rotateObj = 0;
+int rotateCam = 0;
+
 float cameraSenstivity = 0.01f;
+float objectSenstivity = 0.01f;
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 objectPos = glm::vec3(0.0f, 0.0f, 0.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+glm::vec3 orientation1 = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 orientation2 = glm::vec3(-3.0f, 1.5f, 3.0f);
+glm::vec3 orientation3 = glm::vec3(3.0f, 1.5f, 3.0f);
 
 void framebuffer_size_callback(GLFWwindow *window,
                                int width,
@@ -107,15 +209,18 @@ unsigned int getVAO() {
     unsigned int VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,
+                 vertices.size() * sizeof(float),
+                 vertices.data(),
+                 GL_STATIC_DRAW);
 
     /* Set element buffer */
     unsigned int EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                 sizeof(indices),
-                 indices,
+                 indices.size() * sizeof(unsigned int),
+                 indices.data(),
                  GL_STATIC_DRAW);
 
     /* Set vertex pointers */
@@ -142,6 +247,7 @@ unsigned int getVAO() {
 void setTransformations(Shader shaders) {
     /* Set model matrix */
     glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, objectPos);
     model = glm::scale(model, glm::vec3(0.5f, 0.5f,
                                         0.5f));
 
@@ -160,7 +266,6 @@ void setTransformations(Shader shaders) {
 }
 
 void processInput(GLFWwindow *window) {
-    /* Camera movements */
     bool oppositeCamera = false;
 
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
@@ -172,6 +277,7 @@ void processInput(GLFWwindow *window) {
         it = 0;
     }
 
+    /* Camera movements */
     if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
         cameraOn[0] = oppositeCamera ? -1 : 1;
     }
@@ -180,6 +286,42 @@ void processInput(GLFWwindow *window) {
     }
     if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS) {
         cameraOn[2] = oppositeCamera ? -1 : 1;
+    }
+
+    /* Reset object movements */
+    for (auto &it: objectOn) {
+        it = 0;
+    }
+
+    /* Object movements */
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+        objectOn[0] = oppositeCamera ? -1 : 1;
+    }
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        objectOn[1] = oppositeCamera ? -1 : 1;
+    }
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+        objectOn[2] = oppositeCamera ? -1 : 1;
+    }
+
+    /* Set orientation */
+    if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+        cameraPos = orientation1;
+    } else if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+        cameraPos = orientation2;
+    } else if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) {
+        cameraPos = orientation3;
+    }
+
+    rotateObj = 0;
+    rotateCam = 0;
+
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+        if (oppositeCamera) {
+            rotateCam = 1;
+        } else {
+            rotateObj = 1;
+        }
     }
 }
 
@@ -194,10 +336,34 @@ void moveCamera() {
 
 void moveObject() {
     glm::mat4 transformation = glm::mat4(1.0f);
-    cameraPos = glm::vec3(transformation * glm::vec4(cameraPos, 1.0f));
+    transformation = glm::translate(transformation,
+                                    objectSenstivity * glm::vec3(objectOn[0],
+                                                                 objectOn[1],
+                                                                 objectOn[2]));
+    objectPos = glm::vec3(transformation * glm::vec4(objectPos, 1.0f));
+}
+
+void setPolygon() {
+    std::cout << "Enter which polygon to display (1 - 3)\n";
+
+    int polygonNum;
+    std::cin >> polygonNum;
+
+    switch (polygonNum) {
+        case 1:polygon1();
+            break;
+        case 2:polygon2();
+            break;
+        case 3:polygon3();
+            break;
+        default:std::cout << "Invalid choice\n";
+            std::exit(1);
+    }
 }
 
 int main() {
+    setPolygon();
+
     auto window = initWindow(WIDTH, HEIGHT, WINDOW_TITLE);
 
     auto shaders = createShaders();
@@ -225,7 +391,7 @@ int main() {
         glBindVertexArray(VAO);
 
         /* Draw Vertices */
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
         /* Check and call events and swap buffers */
         glfwSwapBuffers(window);
