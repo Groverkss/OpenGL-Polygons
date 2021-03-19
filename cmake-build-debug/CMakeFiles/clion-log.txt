@@ -1,12 +1,7 @@
 /app/extra/clion/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/kunwar/Desktop/Projects/Graphics/Assignment0
-CMake Error at /app/extra/clion/bin/cmake/linux/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:164 (message):
-  Could NOT find GLM (missing: GLM_INCLUDE_DIR)
-Call Stack (most recent call first):
-  /app/extra/clion/bin/cmake/linux/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:445 (_FPHSA_FAILURE_MESSAGE)
-  cmake/modules/FindGLM.cmake:52 (FIND_PACKAGE_HANDLE_STANDARD_ARGS)
-  CMakeLists.txt:17 (find_package)
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "/home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug/CMakeFiles/CMakeError.log".
+-- GLM_INCLUDE_DIR = /home/kunwar/Desktop/Projects/Graphics/Assignment0/include
+-- GLM included at /home/kunwar/Desktop/Projects/Graphics/Assignment0/include
+-- Using X11 for window creation
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/kunwar/Desktop/Projects/Graphics/Assignment0/cmake-build-debug

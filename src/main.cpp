@@ -138,6 +138,7 @@ int cameraOn[3] = {0, 0, 0};
 int objectOn[3] = {0, 0, 0};
 int rotateObj = 0;
 int rotateCam = 0;
+float rotateAngle = 0.0f;
 
 float cameraSenstivity = 0.01f;
 float objectSenstivity = 0.01f;
@@ -194,8 +195,8 @@ void handleExit() {
 }
 
 Shader createShaders() {
-    auto shaders = Shader("src/vertexShader.glsl",
-                          "src/fragmentShader.glsl");
+    auto shaders = Shader("resources/vertexShader.glsl",
+                          "resources/fragmentShader.glsl");
     return shaders;
 }
 
@@ -247,6 +248,9 @@ unsigned int getVAO() {
 void setTransformations(Shader shaders) {
     /* Set model matrix */
     glm::mat4 model = glm::mat4(1.0f);
+    model = glm::rotate(model,
+                        rotateAngle,
+                        glm::vec3(objectPos.x, 1.0f, objectPos.z));
     model = glm::translate(model, objectPos);
     model = glm::scale(model, glm::vec3(0.5f, 0.5f,
                                         0.5f));
@@ -327,6 +331,13 @@ void processInput(GLFWwindow *window) {
 
 void moveCamera() {
     glm::mat4 transformation = glm::mat4(1.0f);
+    if (rotateCam) {
+        transformation = glm::rotate(transformation,
+                                     cameraSenstivity,
+                                     glm::vec3(objectPos.x,
+                                               1.0f,
+                                               objectPos.z));
+    }
     transformation = glm::translate(transformation,
                                     cameraSenstivity * glm::vec3(cameraOn[0],
                                                                  cameraOn[1],
@@ -341,6 +352,13 @@ void moveObject() {
                                                                  objectOn[1],
                                                                  objectOn[2]));
     objectPos = glm::vec3(transformation * glm::vec4(objectPos, 1.0f));
+
+    if (rotateObj) {
+        rotateAngle += objectSenstivity;
+        if (rotateAngle >= 360) {
+            rotateAngle = 0;
+        }
+    }
 }
 
 void setPolygon() {
